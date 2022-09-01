@@ -9,7 +9,7 @@ const weather ={
     const {name} = data;
     const {icon , description } = data.weather[0];
     const {temp } = data.main;
-    const {lon , lat} = data.coordinates;
+    //const {lon , lat} = data.coordinates;
     console.log (name,icon,description)
     console.log (data.coordinates)
     document.querySelector(".city").innerText =`UV Index in ${name}`;
@@ -17,5 +17,12 @@ const weather ={
     document.querySelector(".description").innerText = description;
     document.querySelector(".temp").innerText = temp + "°c"
 
+  },
+  search : function(){
+    this.fetchUVIndex(document.querySelector(".search-bar").value);
   }
-}
+};
+document.querySelector(".search button").addEventListener("click", function(){
+    weather.search();
+});
+
