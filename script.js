@@ -16,7 +16,7 @@ const weather ={
     document.querySelector(".icon").src = "https://openweather.org/img/wn/" + icon + ".png";
     document.querySelector(".description").innerText = description;
     document.querySelector(".temp").innerText = temp + "°c"
-
+    document.body.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?" + name + "')"
   },
   search : function(){
     this.fetchUVIndex(document.querySelector(".search-bar").value);
@@ -24,5 +24,10 @@ const weather ={
 };
 document.querySelector(".search button").addEventListener("click", function(){
     weather.search();
+});
+document.querySelector(".search-bar").addEventListener("key-up" , function(e){
+  if(e.key == "Enter"){
+    weather.search();
+  }
 });
 
