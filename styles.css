@@ -64,3 +64,13 @@ button :hover{
 .description{
   text-transform: capitalize;
 }
+.container{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  font-weight: bold;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 70px;
+}

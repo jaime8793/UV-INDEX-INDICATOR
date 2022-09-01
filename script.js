@@ -3,7 +3,8 @@ const weather ={
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=65b6e2a8c3622af3622a3030c6a9e1df`)
     .then((response)=> response.json())
     //.then((response)=> console.log(response))
-    .then((data)=> this.changeUVIndex(data));
+    .then((data)=> this.changeUVIndex(data))
+    .catch(err=> console.error(err));
 
   },
   
@@ -13,7 +14,7 @@ const weather ={
     const {temp } = data.main;
     const {lon , lat } = data.coord;
     console.log (name,icon,description,lon , lat)
-    document.querySelector(".city").innerText =`UV Index in ${name}`;
+    document.querySelector(".city").innerText =`UV Index in ${name} is `;
     document.querySelector(".icon").src = "https://openweather.org/img/wn/" + icon + ".png";
     document.querySelector(".description").innerText = description;
     document.querySelector(".temp").innerText = temp + "°c"
@@ -31,6 +32,12 @@ const weather ={
       .then(response => response.json())
       .then(UVData => console.log(UVData))
       .catch(err => console.error(err));
+  
+    //realUVIndex : function(UVData){
+     // const {uv} = UVData
+     // console.log(uv)
+
+    //}
   },
 
   search : function(){
