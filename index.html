@@ -8,9 +8,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,600&display=swap" rel="stylesheet">
     <script>let weather ={
-      "apikey" : "65b6e2a8c3622af3622a3030c6a9e1df",
-      fetchUVIndex :function(){
-        fetch("https://api.openweathermap.org/data/2.5/weather?q=Nairobi&units=metric&appid=65b6e2a8c3622af3622a3030c6a9e1df")
+      fetchUVIndex :function(city){
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=65b6e2a8c3622af3622a3030c6a9e1df`)
+        .then((response)=> response.json())
+        .then((data)=> this.changeUVIndex(data))
+      },
+      changeUVIndex : function(data){
+        const {name} = data;
+        const {icon , description } = data.weather[0];
+        const {temp } = data.main;
+        console.log (nmae,icon,description)
       }
     } </script>
   <title>UV Index App</title>
