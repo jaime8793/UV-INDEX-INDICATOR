@@ -41,11 +41,11 @@ const weather ={
     const {lon , lat } = data.coord;
     console.log (name,icon,description,lon , lat)
     document.querySelector(".city").innerText =`UV Index in ${name} is `;
-    document.querySelector(".icon").src = "https://openweather.org/img/wn/" + icon + ".png";
+    document.querySelector(".icon").src = "http://openweathermap.org/img/wn/" + icon + "@4x.png";
     document.querySelector(".description").innerText = description;
     document.querySelector(".temp").innerText = temp + "°c"
     document.body.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?" + name + "')"
-    const options = {
+    /*const options = {
       method: 'GET',
       headers: {
         'x-access-token': 'fcb409146c7459a9e8f703e7e1d42d04',
@@ -61,9 +61,9 @@ const weather ={
   
     //realUVIndex : function(UVData){
      // const {uv} = UVData
-     // console.log(uv)
+      / console.log(uv)*/
 
-    //}
+  //}
   },
 
   search : function(){

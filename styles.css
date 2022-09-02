@@ -61,9 +61,11 @@ h1.temp{
 button :hover{
   background: #7c7c7c6b;
 } 
+
 .description{
   text-transform: capitalize;
 }
+
 .container{
   font-family: 'Open Sans', sans-serif;;
   color: #fff;
@@ -74,9 +76,8 @@ button :hover{
   transform: translate(-50%, -50%);
   font-size: 40px;
   background:#10101ed0; 
-  width : 280px;
+  width : 260px;
   padding: 15px 10px;
   border: 3px solid #2E94e3;
   border-radius: 5px;
 }
-.
