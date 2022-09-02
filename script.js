@@ -28,9 +28,9 @@ const weather ={
   fetchUVIndex :function(city){
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=65b6e2a8c3622af3622a3030c6a9e1df`)
     .then((response)=> response.json())
-    //.then((response)=> console.log(response))
+    //.then((data)=> console.log(data))
     .then((data)=> this.changeUVIndex(data))
-    .catch(err=> console.error(err));
+    //.catch(err=> console.error(err));
 
   },
   
@@ -40,12 +40,12 @@ const weather ={
     const {temp } = data.main;
     const {lon , lat } = data.coord;
     console.log (name,icon,description,lon , lat)
-    document.querySelector(".city").innerText =`UV Index in ${name} is `;
+    document.querySelector(".city").innerText =`UV Index in ${name} is`;
     document.querySelector(".icon").src = "http://openweathermap.org/img/wn/" + icon + "@4x.png";
     document.querySelector(".description").innerText = description;
     document.querySelector(".temp").innerText = temp + "°c"
     document.body.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?" + name + "')"
-    /*const options = {
+    const options = {
       method: 'GET',
       headers: {
         'x-access-token': 'fcb409146c7459a9e8f703e7e1d42d04',
@@ -56,16 +56,13 @@ const weather ={
     
     fetch(`https://aershov-openuv-global-real-time-uv-index-v1.p.rapidapi.com/api/v1/uv?lat=${lat}&lng=${lon}}`, options)
       .then(response => response.json())
-      .then(UVData => console.log(UVData))
-      .catch(err => console.error(err));
-  
-    //realUVIndex : function(UVData){
-     // const {uv} = UVData
-      / console.log(uv)*/
+      .then(response => console.log(response))
 
-  //}
-  },
-
+      .then(function (data) {
+        let {uv} = data.uv[0];
+        console.log(uv);});
+      
+    },
   search : function(){
     this.fetchUVIndex(document.querySelector(".search-bar").value);
     //console.log(lon , lat)
@@ -74,10 +71,9 @@ const weather ={
 document.querySelector(".search button").addEventListener("click", function(){
     weather.search();
 });
-document.querySelector(".search-bar").addEventListener("key-up" , function(e){
-  if(e.key == "Enter"){
+document.querySelector(".search-bar").addEventListener("keyup" , function(event){
+  if(event.key == "Enter"){
     weather.search();
   }
   
 });
-
