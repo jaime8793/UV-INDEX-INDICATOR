@@ -56,10 +56,11 @@ const weather ={
     
     fetch(`https://aershov-openuv-global-real-time-uv-index-v1.p.rapidapi.com/api/v1/uv?lat=${lat}&lng=${lon}}`, options)
       .then(response => response.json())
-      .then(response => console.log(response))
+      //.then(response => console.log(response))
 
-      .then(function (data) {
-        let {uv} = data.uv[0];
+      .then(function (response) {
+        let uv = response.result.uv;
+        document.querySelector(".city").innerText =`UV Index in ${name} is ${uv}`
         console.log(uv);});
       
     },
