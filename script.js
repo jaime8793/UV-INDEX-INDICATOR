@@ -41,7 +41,7 @@ const weather ={
     const {lon , lat } = data.coord;
     console.log (name,icon,description,lon , lat)
     document.querySelector(".city").innerText =`UV Index in ${name} is`;
-    document.querySelector(".icon").src = "http://openweathermap.org/img/wn/" + icon + "@4x.png";
+    document.querySelector(".icon").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
     document.querySelector(".description").innerText = description;
     document.querySelector(".temp").innerText = temp + "°c"
     document.body.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?" + name + "')"
@@ -64,6 +64,7 @@ const weather ={
         console.log(uv);
         if (uv < 2 ){
           document.getElementById("low").style.color = "green";
+
         }
         else if (uv <= 5){
           document.querySelector("#mid").style.color = "green";
@@ -87,5 +88,6 @@ document.querySelector(".search-bar").addEventListener("keyup" , function(event)
   if(event.key == "Enter"){
     weather.search();
   }
+  
   
 });

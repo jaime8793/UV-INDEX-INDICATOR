@@ -9,6 +9,7 @@ body{ display: flex;
     }
 
 .card{
+  top : 10%;
   background:#000000d0; 
   color :aliceblue ; 
   padding: 2em; 
