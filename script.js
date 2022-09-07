@@ -61,9 +61,20 @@ const weather ={
       .then(function (response) {
         let uv = response.result.uv;
         document.querySelector(".city").innerText =`UV Index in ${name} is ${uv}`
-        console.log(uv);});
-      
-    },
+        console.log(uv);
+        if (uv < 2 ){
+          document.getElementById("low").style.color = "green";
+        }
+        else if (uv <= 5){
+          document.querySelector("#mid").style.color = "green";
+        }
+        else if (uv <= 10){
+          document.querySelector("#abv").style.color = "green";
+        }
+        else if (uv >= 11){
+            document.querySelector("#high").style.color = "green";
+          }})
+      },
   search : function(){
     this.fetchUVIndex(document.querySelector(".search-bar").value);
     //console.log(lon , lat)
