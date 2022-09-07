@@ -88,6 +88,8 @@ document.querySelector(".search-bar").addEventListener("keyup" , function(event)
   if(event.key == "Enter"){
     weather.search();
   }
-  
+  document.addEventListener('DOMContentLoaded', (event) => {
+    log.textContent += 'DOMContentLoaded\n';
+  });
   
 });
