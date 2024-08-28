@@ -4,9 +4,10 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background: linear-gradient(rgba(113, 44, 131, 0.7), rgba(0, 0, 0, 0.7)),
-              url('https://source.unsplash.com/1920x1080/?nature,water') no-repeat center center fixed;
+    url("https://source.unsplash.com/1920x1080/?nature,water") no-repeat center
+      center fixed;
   background-size: cover;
   font-size: 16px;
   color: #fff;
@@ -26,7 +27,7 @@ body {
   font-weight: bold;
   font-size: 2em;
   padding: 15px 10px;
-  border: 3px solid #2E94e3;
+  border: 3px solid #2e94e3;
   border-radius: 5px;
   margin-bottom: 1em;
   text-align: center;
@@ -36,7 +37,7 @@ body {
   background: #000000d0;
   padding: 2em;
   border-radius: 30px;
-  width: 100%;
+  width: 30%;
   box-sizing: border-box;
 }
 
@@ -94,6 +95,7 @@ h1.temp {
 .uv-chart {
   margin-top: 2em;
   text-align: center;
+  width: 30%
 }
 
 .uv-chart img {
@@ -106,16 +108,23 @@ h1.temp {
   body {
     font-size: 14px;
   }
-  
+
   .container {
     margin: 0.5em;
   }
-  
+
   .clock {
     font-size: 1.5em;
   }
-  
+
   .card {
     padding: 1.5em;
   }
 }
+.display2 {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
