@@ -1,9 +1,12 @@
 // Clock functionality
-function realTime() {
+function updateClock(timezone) {
   const dateTime = new Date();
-  const hrs = dateTime.getHours();
-  const min = dateTime.getMinutes();
-  const sec = dateTime.getSeconds();
+  const utc = dateTime.getTime() + dateTime.getTimezoneOffset() * 60000;
+  const cityTime = new Date(utc + 1000 * timezone);
+
+  const hrs = cityTime.getHours();
+  const min = cityTime.getMinutes();
+  const sec = cityTime.getSeconds();
   const session = hrs >= 12 ? "PM" : "AM";
 
   document.querySelector("#hours").textContent = (hrs % 12 || 12)
@@ -17,8 +20,6 @@ function realTime() {
     .padStart(2, "0");
   document.querySelector("#session").textContent = session;
 }
-
-setInterval(realTime, 1000);
 
 // Weather and UV Index functionality
 const weather = {
@@ -34,7 +35,15 @@ const weather = {
         }
         return response.json();
       })
-      .then((data) => this.displayWeather(data))
+      .then((data) => {
+        this.displayWeather(data);
+        // Start updating the clock with the city's timezone
+        clearInterval(this.clockInterval);
+        this.clockInterval = setInterval(
+          () => updateClock(data.timezone),
+          1000
+        );
+      })
       .catch((err) => {
         console.error("Weather fetch error:", err);
         this.showError("City not found. Please try again.");
@@ -78,11 +87,20 @@ const weather = {
         this.showError("Failed to fetch UV data. Please try again later.");
       });
   },
+  getUVColor: function (uv) {
+    if (uv <= 2) return "#00ff00"; // Green for low UV
+    if (uv <= 5) return "#ffff00"; // Yellow for moderate UV
+    if (uv <= 7) return "#ffa500"; // Orange for high UV
+    return "#ff0000"; // Red for very high and extreme UV
+  },
   displayUVIndex: function (data) {
     const uv = data.result.uv;
-    document.querySelector(".city").textContent += ` (UV Index: ${uv.toFixed(
-      1
-    )})`;
+    const uvColor = this.getUVColor(uv);
+
+    const cityElement = document.querySelector(".city");
+    cityElement.innerHTML = `${
+      cityElement.textContent
+    } <span style="color: ${uvColor};">(UV Index: ${uv.toFixed(1)})</span>`;
 
     let recommendation;
     if (uv === 0) {
@@ -104,7 +122,8 @@ const weather = {
         "Extreme UV. Take all precautions. Avoid being outside during midday hours.";
     }
 
-    document.querySelector(".uv-recommendation").textContent = recommendation;
+    const recommendationElement = document.querySelector(".uv-recommendation");
+    recommendationElement.innerHTML = `<span style="color: ${uvColor};">${recommendation}</span>`;
   },
   setBackgroundImage: function (city) {
     const accessKey = "DhlopmPFH7A19ZcxJ8D36iR9p39nyzLzzGwfKVt2T2Y"; // Replace with your actual Unsplash access key
@@ -129,7 +148,6 @@ const weather = {
         console.log("Fallback background image loaded");
       });
   },
-
   search: function () {
     this.fetchWeather(document.querySelector(".search-bar").value);
   },

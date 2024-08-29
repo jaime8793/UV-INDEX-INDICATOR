@@ -18,7 +18,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 420px;
+  max-width: 900px;
   margin: 1em;
 }
 
@@ -33,12 +33,35 @@ body {
   text-align: center;
 }
 
+.display2 {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .card {
   background: #000000d0;
   padding: 2em;
   border-radius: 30px;
-  width: 30%;
+  width: 45%;
   box-sizing: border-box;
+}
+
+.weather-card {
+  margin-right: 1em;
+}
+
+.uv-chart-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.uv-chart-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
 .search {
@@ -92,39 +115,18 @@ h1.temp {
   text-align: center;
 }
 
-.uv-chart {
-  margin-top: 2em;
-  text-align: center;
-  width: 30%
-}
-
-.uv-chart img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-@media (max-width: 480px) {
-  body {
-    font-size: 14px;
-  }
-
-  .container {
-    margin: 0.5em;
-  }
-
-  .clock {
-    font-size: 1.5em;
+@media (max-width: 768px) {
+  .display2 {
+    flex-direction: column;
+    align-items: center;
   }
 
   .card {
-    padding: 1.5em;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
+  .weather-card {
+    margin-right: 0;
   }
 }
-.display2 {
-  display: flex;
-  width: 100vw;
-  align-items: center;
-  justify-content: center;
-}
-
