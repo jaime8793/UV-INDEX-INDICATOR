@@ -1,4 +1,4 @@
-// Clock functionality in UTC
+// Clock functionality in UTC time
 function updateClock(timezone) {
   const dateTime = new Date();
   const utc = dateTime.getTime() + dateTime.getTimezoneOffset() * 60000;
